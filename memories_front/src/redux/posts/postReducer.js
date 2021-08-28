@@ -1,8 +1,10 @@
-import { POST_FAILURE, POST_LOADING, POST_SUCCESS } from "./postactionTypes";
+import { POST_FAILURE, POST_LOADING, POST_SUCCESS, SINGLE_POST_FAILURE, SINGLE_POST_LOADING, SINGLE_POST_SUCCESS } from "./postactionTypes";
 
 const initstate = {
   ploading: false,
   pfailure: false,
+  sloading:false,
+  sfailure:false,
   psuccess: [],
 };
 
@@ -25,6 +27,23 @@ export const postReducer = (state = initstate, { type, payload }) => {
         ploading: false,
         pfailure: true,
       };
+    case SINGLE_POST_LOADING:
+      return{
+        ...state,
+        sloading:true
+      }
+    case SINGLE_POST_FAILURE:
+      return{
+        ...state,
+        sloading:false,
+        sfailure:true
+      }  
+    case SINGLE_POST_SUCCESS:
+      return{
+        ...state,
+        sloading:false,
+        psuccess:[...state.psuccess,payload]
+      }  
     default:
       return state;
   }
