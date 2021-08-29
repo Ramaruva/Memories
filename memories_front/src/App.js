@@ -10,8 +10,7 @@ import { postdata } from "./redux/posts/actionPosts";
 function App() {
   
   const dispatch = useDispatch()
-  const psuccess= useSelector(state=>state.post.psuccess)
-  console.log(psuccess) 
+ 
   const classes = useStyles()
   useEffect(()=>
   {
