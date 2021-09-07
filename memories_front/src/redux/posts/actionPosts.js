@@ -1,4 +1,4 @@
-import { POST_FAILURE, POST_LOADING, POST_SUCCESS, SINGLE_POST_FAILURE, SINGLE_POST_LOADING, SINGLE_POST_SUCCESS } from "./postactionTypes";
+import { POST_FAILURE, POST_LOADING, POST_SUCCESS, SINGLE_POST_FAILURE, SINGLE_POST_LOADING, SINGLE_POST_SUCCESS ,SINGLE_POST_UPDATE} from "./postactionTypes";
 import * as api from "../../api/index";
 export const postloading = () => ({
   type: POST_LOADING,
@@ -32,7 +32,14 @@ export const singlePosts =(payload)=>
     payload
   }
 )
+export const singleUpdate=(payload)=>
+(
+  {
 
+    type:SINGLE_POST_UPDATE,
+    payload
+  }
+)
 export const postdata = () => async (dispatch) => {
   dispatch(postloading());
   try {
@@ -54,4 +61,15 @@ export const createpostData =(post)=>async(dispatch)=>
           } catch (error) {
              dispatch(singleFailure())
           }
+}
+
+export const updatePostData =(id,post)=>async(dispatch)=>
+{
+     dispatch(singleLoading())
+     try {
+        const {data}=await api.updatePost(id,post)
+        dispatch(singleUpdate(data))
+      } catch (error) {
+        dispatch(singleFailure())
+     }
 }
