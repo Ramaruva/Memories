@@ -3,7 +3,7 @@ import Container from "@material-ui/core/Container";
 import { AppBar, Grid, Grow, Typography } from "@material-ui/core";
 import { Posts } from "./components/posts/Posts";
 import { Form } from "./components/form/Form";
-import {useDispatch, useSelector} from "react-redux"
+import {useDispatch} from "react-redux"
 import useStyles from './styles'
 import { useEffect } from "react";
 import { postdata } from "./redux/posts/actionPosts";
