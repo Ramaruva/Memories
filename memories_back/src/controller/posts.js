@@ -18,7 +18,19 @@ const createPosts =async(req,res)=>
         return res.status(409).json({message:error.message})
     }
 }
+const updatPosts =async(req,res)=>
+{
+    try {
+          const {id:_id}=req.params
+          const post=req.body
+          const update= await postMessage.findByIdAndUpdate(_id,post,{new:true});
+          return res.status(200).json(update)
+    } catch (error) {
+        return res.status(409).json({message:error.message})
+    }
+}
 module.exports={
     getPosts,
-    createPosts
+    createPosts,
+    updatPosts
 }
