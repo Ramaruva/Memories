@@ -1,3 +1,4 @@
+const { Mongoose } = require("mongoose")
 const postMessage= require("../models/postsMessages")
 
 const getPosts =async(req,res)=>
@@ -18,6 +19,7 @@ const createPosts =async(req,res)=>
         return res.status(409).json({message:error.message})
     }
 }
+
 const updatPosts =async(req,res)=>
 {
     try {
@@ -28,6 +30,7 @@ const updatPosts =async(req,res)=>
     } catch (error) {
         return res.status(409).json({message:error.message})
     }
+
 }
 module.exports={
     getPosts,
