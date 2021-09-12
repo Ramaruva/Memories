@@ -93,3 +93,14 @@ export const Deletepost =(id)=>async(dispatch)=>
          dispatch(singleFailure())
      }
 }
+
+export const LikeSingle =(id)=>async(dispatch)=>
+{
+  dispatch(singleLoading())
+  try {
+     const {data}=await api.likePost(id)
+     dispatch(singleUpdate(data))
+   } catch (error) {
+     dispatch(singleFailure())
+  } 
+}
