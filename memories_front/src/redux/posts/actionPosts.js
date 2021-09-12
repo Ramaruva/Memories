@@ -1,4 +1,4 @@
-import { POST_FAILURE, POST_LOADING, POST_SUCCESS, SINGLE_POST_FAILURE, SINGLE_POST_LOADING, SINGLE_POST_SUCCESS ,SINGLE_POST_UPDATE} from "./postactionTypes";
+import { POST_FAILURE, POST_LOADING, POST_SUCCESS, SINGLE_POST_DELETE, SINGLE_POST_FAILURE, SINGLE_POST_LOADING, SINGLE_POST_SUCCESS ,SINGLE_POST_UPDATE} from "./postactionTypes";
 import * as api from "../../api/index";
 export const postloading = () => ({
   type: POST_LOADING,
@@ -40,6 +40,14 @@ export const singleUpdate=(payload)=>
     payload
   }
 )
+
+export const singleDelete =(payload)=>
+(
+  {
+    type:SINGLE_POST_DELETE,
+    payload
+  }
+)
 export const postdata = () => async (dispatch) => {
   dispatch(postloading());
   try {
@@ -71,5 +79,17 @@ export const updatePostData =(id,post)=>async(dispatch)=>
         dispatch(singleUpdate(data))
       } catch (error) {
         dispatch(singleFailure())
+     }
+}
+
+
+export const Deletepost =(id)=>async(dispatch)=>
+{
+  dispatch(singleLoading())
+     try {
+            await api.deletePost(id)
+            dispatch(singleDelete(id))
+     } catch (error) {
+         dispatch(singleFailure())
      }
 }

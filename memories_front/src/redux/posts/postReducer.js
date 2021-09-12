@@ -2,6 +2,7 @@ import {
   POST_FAILURE,
   POST_LOADING,
   POST_SUCCESS,
+  SINGLE_POST_DELETE,
   SINGLE_POST_FAILURE,
   SINGLE_POST_LOADING,
   SINGLE_POST_SUCCESS,
@@ -61,6 +62,13 @@ export const postReducer = (state = initstate, { type, payload }) => {
         sloading: false,
         psuccess: array,
       };
+    case SINGLE_POST_DELETE :
+      const darray=state.psuccess?.filter((item)=>item._id!==payload).map((item)=>item)
+      return{
+        ...state,
+        sloading: false,
+        psuccess: darray,
+      }  
     default:
       return state;
   }
