@@ -32,8 +32,19 @@ const updatPosts =async(req,res)=>
     }
 
 }
+const deletePosts =async(req,res)=>
+{
+    try {
+          const {id}=req.params
+          await postMessage.findByIdAndDelete(id)
+          return res.status(200).json({message:"Deleted Successfully"})
+    } catch (error) {
+        return res.status(409).json({message:error.message})
+    }
+}
 module.exports={
     getPosts,
     createPosts,
-    updatPosts
+    updatPosts,
+    deletePosts
 }
