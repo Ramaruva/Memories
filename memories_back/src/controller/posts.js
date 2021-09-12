@@ -42,9 +42,21 @@ const deletePosts =async(req,res)=>
         return res.status(409).json({message:error.message})
     }
 }
+const likePosts =async(req,res)=>
+{
+    try {
+          const {id}=req.params
+          const posts= await postMessage.findById(id)
+          const update = await postMessage.findByIdAndUpdate(id,{likeCount:posts.likeCount+1},{new:true})
+          return res.status(200).json(update)
+    } catch (error) {
+        return res.status(409).json({message:error.message})
+    }
+}
 module.exports={
     getPosts,
     createPosts,
     updatPosts,
-    deletePosts
+    deletePosts,
+    likePosts
 }
