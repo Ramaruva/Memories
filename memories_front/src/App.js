@@ -39,7 +39,7 @@ function App() {
               alignItems="stretch"
               spacing={3}
             >
-              <Grid xs={12} sm={7}>
+              <Grid className={classes.mainContainer} xs={12} sm={7}>
                 <Posts  setCurrentId={setCurrentId}/>
               </Grid>
               <Grid xs={12} sm={4}>
